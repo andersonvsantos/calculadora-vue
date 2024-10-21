@@ -1,5 +1,8 @@
 <script setup>
     import { reactive } from 'vue';
+    import Cabecalho from './components/Cabecalho.vue';
+    import Formulario from './components/Formulario.vue';
+    import Resultado from './components/Resultado.vue';
 
     const estado = reactive({
         operacao: 'somar',
@@ -42,43 +45,11 @@
 
 <template>
     <div class="container text-center">
-        <header class="mt-3 mb-3">
-            <h1>Calculadora</h1>
-        </header>
-        <form @submit.prevent="getResultado">
-            <div class="row">
-                <div class="col-5">
-                    <input @change="getResultado" @keyup="evento => estado.num1 = evento.target.value" type="number" class="form-control">
-                </div>
-                <div class="col-5">
-                    <input @change="getResultado" @keyup="evento => estado.num2 = evento.target.value" type="number" class="form-control">
-                </div>
-                <div class="col-2">
-                    <select @change="evento => {estado.operacao = evento.target.value; getResultado()}" class="form-control text-center" id="select">
-                        <option value="somar" class="option">+</option>
-                        <option value="subtrair" class="option">-</option>
-                        <option value="dividir" class="option">/</option>
-                        <option value="multiplicar" class="option">*</option>
-                    </select>
-                </div>
-            </div>
-        </form>
-        <div class="row mt-4">
-            <div class="col">
-                <h2>Resultado</h2>
-                <span>{{ estado.resultado }}</span>
-            </div>
-        </div>
+        <Cabecalho/>
+        <Formulario :pegarResultado="getResultado" :pegarNum1="evento => estado.num1 = evento.target.value" :pegarNum2="evento => estado.num2 = evento.target.value" :pegarOperacao="evento => {estado.operacao = evento.target.value; getResultado();}"/>
+        <Resultado :mostrarResultado="estado.resultado"/>
     </div>
 </template>
 
 <style scoped>
-    #select {
-        background-color: rgb(38, 41, 228);
-        color: white;
-        border: none;
-    }
-    .option {
-        background-color: rgb(209, 215, 218);
-    }
 </style>

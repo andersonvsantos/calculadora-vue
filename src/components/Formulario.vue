@@ -12,7 +12,7 @@
                 <input @change="props.pegarResultado" @keyup="props.pegarNum2" type="number" class="form-control">
             </div>
             <div class="col-2">
-                <select @change="evento => { props.pegarOperacao; props.pegarResultado; }" class="form-control text-center" id="select">
+                <select @change="props.pegarOperacao" class="form-control text-center" id="select">
                     <option value="somar" class="option">+</option>
                     <option value="subtrair" class="option">-</option>
                     <option value="dividir" class="option">/</option>
